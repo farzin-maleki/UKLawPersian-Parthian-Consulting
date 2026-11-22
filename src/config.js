@@ -1,7 +1,7 @@
 /** Public configuration only. Never put credentials or private webhook URLs here. */
 export const config = {
   siteUrl: "",
-  launchApproved: false,
+  launchApproved: true,
   contact: {
     email: "Jason@parthianconsulting.com",
     phone: "07707294918",
