@@ -212,9 +212,8 @@
   .page-intro {
     padding-block: 60px;
   }
-  .portrait-placeholder {
-    height: 370px;
-    max-width: 500px;
+  .about-plaza-photo {
+    max-height: 370px;
   }
   .booking-detail {
     position: static;
@@ -532,8 +531,8 @@
   .page-intro .lead {
     font-size: 16px;
   }
-  .portrait-placeholder {
-    height: 330px;
+  .about-plaza-photo {
+    max-height: 330px;
   }
   .value-card {
     padding: 28px;

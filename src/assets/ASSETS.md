@@ -11,5 +11,10 @@ The images are locally stored WebP derivatives of photographs under the [Unsplas
 | `images/articles/housing.webp` | [Diego Damato, Notting Hill terraced houses](https://unsplash.com/photos/a-row-of-houses-on-a-city-street-lOmcjfGlymU) |
 | `images/articles/employment.webp` | [Vitaly Gariev, workspace and notebook](https://unsplash.com/photos/man-working-at-desk-with-laptop-and-notebook-qnm5RTmMasE) |
 | `images/articles/business.webp` | [Simon Clotour, City of London glass facade](https://unsplash.com/photos/modern-glass-skyscraper-with-reflective-facade-tYOLBmbvM0M) |
+| `images/services/immigration.webp` | [Ethan Wilkinson, British passport](https://unsplash.com/photos/6ZJbSY4OVVQ) |
+| `images/services/civil-disputes.webp` | [Age Cymru, discussion at a table](https://unsplash.com/photos/W1jlTkMzaQg) |
+| `images/services/property.webp` | [Jakub Żerdzicki, keys at a front door](https://unsplash.com/photos/UBIqmkNE96M) |
+| `images/services/document-assistance.webp` | [Olena Kholina, reviewing paperwork](https://unsplash.com/photos/MhqUBTxQ3Hw) |
+| `images/backgrounds/london-plaza.webp` | [Brett Wharton, London plaza](https://unsplash.com/photos/BI-ZA9UhUMA) |
 
 [Bootstrap 5.3.8](https://getbootstrap.com/docs/5.3/) and [Bootstrap Icons 1.13.1](https://icons.getbootstrap.com/) are MIT licensed. The icon sprite contains a subset of the official symbols. Inter and Vazirmatn variable WOFF2 subsets are from Fontsource and are licensed under the SIL Open Font License. The corresponding licence files are retained beside the assets.

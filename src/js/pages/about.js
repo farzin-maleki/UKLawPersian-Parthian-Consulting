@@ -1,4 +1,5 @@
 import { copy } from "../../content/data.js";
+import { basePath } from "../../modules/paths.js";
 import { escapeHTML, icon } from "../../modules/ui.js";
 import { pageIntro, CTA } from "../../modules/sections.js";
 export function render(lang) {
@@ -23,10 +24,14 @@ export function render(lang) {
       <div class="container">
         <div class="row g-5 align-items-start">
           <div class="col-lg-5">
-            <div class="portrait-placeholder">
-              ${icon("person-bounding-box")}
-              <span>${escapeHTML(c.profilePlaceholder)}</span>
-            </div>
+            <img
+              class="about-plaza-photo"
+              src="${basePath}/src/assets/images/backgrounds/london-plaza.webp"
+              alt="${lang === "fa" ? "عابران پیاده در میدانی میان ساختمان‌های آجری و شیشه‌ای لندن" : "Pedestrians crossing a London plaza framed by brick and glass buildings"}"
+              width="840"
+              height="900"
+              loading="lazy"
+            />
           </div>
           <div class="col-lg-6 offset-lg-1">
             <p class="eyebrow">PARTHIAN CONSULTING</p>

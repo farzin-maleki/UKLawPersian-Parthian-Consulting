@@ -1,4 +1,3 @@
-import { config } from "../config.js";
 import { basePath } from "../modules/paths.js";
 import { escapeHTML, icon } from "../modules/ui.js";
 
@@ -37,10 +36,9 @@ export function WrittenAssessmentGuide(lang, paymentUrl) {
   const c = copy[lang];
   const panels = ["email", "whatsapp"].map((method) => {
     const email = method === "email";
-    const contact = email ? config.contact.email : `+${config.contact.whatsapp}`;
     return /* HTML */ `
       <div id="guide-${method}" ${email ? "" : "hidden"}>
-        <p><bdi dir="ltr">${escapeHTML(contact)}</bdi><br>${email ? c.emailHelp : c.whatsappHelp}</p>
+        <p>${email ? c.emailHelp : c.whatsappHelp}</p>
         <img src="${basePath}/src/assets/images/assessment-guides/${method}-${lang}.webp"
           alt="${email ? c.emailImage : c.whatsappImage}" loading="lazy"
           width="${email ? 1463 : 1536}" height="${email ? 1075 : 1024}">

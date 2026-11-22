@@ -24,6 +24,7 @@ export const navigation = [
 export const services = [
   {
     id: "immigration",
+    photo: "services/immigration.webp",
     icon: "globe2",
     title: bi(
       "Immigration & nationality information",
@@ -95,6 +96,7 @@ export const services = [
   },
   {
     id: "housing",
+    photo: "articles/housing.webp",
     icon: "house-door",
     title: bi(
       "Housing, tenancy & landlord–tenant matters",
@@ -163,6 +165,7 @@ export const services = [
   },
   {
     id: "employment",
+    photo: "articles/employment.webp",
     icon: "briefcase",
     title: bi(
       "Employment rights & workplace disputes",
@@ -234,6 +237,7 @@ export const services = [
   },
   {
     id: "civil-disputes",
+    photo: "services/civil-disputes.webp",
     icon: "chat-square-text",
     title: bi(
       "Civil disputes, small claims & debt recovery",
@@ -305,6 +309,7 @@ export const services = [
   },
   {
     id: "business",
+    photo: "articles/business.webp",
     icon: "buildings",
     title: bi(
       "Business & commercial consultancy",
@@ -376,6 +381,7 @@ export const services = [
   },
   {
     id: "property",
+    photo: "services/property.webp",
     icon: "key",
     title: bi(
       "Property purchasing & related guidance",
@@ -447,6 +453,7 @@ export const services = [
   },
   {
     id: "document-assistance",
+    photo: "services/document-assistance.webp",
     icon: "file-earmark-text",
     title: bi(
       "Document preparation & administrative assistance",

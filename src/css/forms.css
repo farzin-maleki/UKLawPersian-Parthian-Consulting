@@ -377,10 +377,6 @@ fieldset {
   margin-block-end: 20px;
 }
 
-.written-guide bdi {
-  overflow-wrap: anywhere;
-}
-
 .video-notice h2 {
   display: flex;
   align-items: center;
