@@ -12,23 +12,32 @@ export function MobileMenu(lang) {
       if (item.path === "services/") return ServicesDropdown(lang, "mobile");
       return /* HTML */ `
         <a href="${pathFor(item.path, lang)}">
-          ${escapeHTML(t(item.label, lang))}${icon("arrow-right", "directional")}
+          ${escapeHTML(t(item.label, lang))}
         </a>
       `;
     })
     .join("");
 
   return /* HTML */ `
-    <dialog id="mobile-menu" class="mobile-menu" aria-label="${escapeHTML(c.navigation)}">
+    <dialog
+      id="mobile-menu"
+      class="mobile-menu"
+      aria-label="${escapeHTML(c.navigation)}"
+    >
       <div class="mobile-menu-top">
         ${Brand(lang)}
-        <button class="icon-button" data-close-menu aria-label="${escapeHTML(c.close)}">
+        <button
+          class="icon-button"
+          data-close-menu
+          aria-label="${escapeHTML(c.close)}"
+        >
           ${icon("x-lg")}
         </button>
       </div>
       <nav aria-label="${escapeHTML(c.navigation)}">${menuLinks}</nav>
-      <div class="mobile-menu-bottom">${LanguageSwitcher(lang)}${BookingButton(lang)}</div>
-      <p class="small muted">Parthian Consulting</p>
+      <div class="mobile-menu-bottom">
+        ${LanguageSwitcher(lang)}${BookingButton(lang)}
+      </div>
     </dialog>
   `;
 }
