@@ -9,7 +9,7 @@ export const config = {
     instagram: "https://www.instagram.com/uklawpersian", // Approved public HTTPS profile URL.
   },
   booking: {
-    enabled: false, // Enable only after the end-to-end booking flow is tested.
+    enabled: true, // Enable only after the end-to-end booking flow is tested.
     videoUrl: "https://cal.com/parthian-consulting-booking/video-consultation", // https://cal.com/your-account/your-video-event
     writtenUrl: "", // Public Stripe Payment Link (buy.stripe.com) for the £50 written assessment.
     documentsEnabled: false, // Requires the separately tested external automation.
