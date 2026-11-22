@@ -1,6 +1,7 @@
 /* Deferred so the loading screen can appear while the page modules are still loading. */
 (() => {
   const root = document.documentElement;
+  const basePath = root.dataset.basePath || "";
   const main = document.getElementById("main-content");
   const persian = root.lang === "fa";
   const message = persian ? "در حال بارگذاری صفحه…" : "Loading page…";
@@ -11,7 +12,7 @@
   overlay.setAttribute("aria-hidden", "true");
   overlay.innerHTML = /* HTML */ `
     <div class="page-loader-content">
-      <img src="/src/assets/logos/parthian-emblem.webp" alt="" width="144" height="144" />
+      <img src="${basePath}/src/assets/logos/parthian-emblem.webp" alt="" width="144" height="144" />
       <span class="page-loader-progress"></span>
       <p></p>
     </div>
@@ -109,7 +110,7 @@
   if (!root.dataset.ready) {
     main.setAttribute("aria-busy", "true");
     showWhenSlow({ initial: true });
-    document.querySelector('script[src="/src/js/main.js"]')
+    document.querySelector(`script[src="${basePath}/src/js/main.js"]`)
       ?.addEventListener("error", showStartupError, { once: true });
   }
 
@@ -137,7 +138,8 @@
     const destination = new URL(link.href);
     if (
       destination.origin !== location.origin ||
-      !/^\/(?:en|fa)(?:\/|$)/.test(destination.pathname)
+      !destination.pathname.startsWith(basePath + "/") ||
+      !/^\/(?:en|fa)(?:\/|$)/.test(destination.pathname.slice(basePath.length))
     )
       return;
     link.closest("dialog[open]")?.close();

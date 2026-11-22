@@ -1,4 +1,5 @@
 import { config } from "../config.js";
+import { basePath } from "../modules/paths.js";
 import { escapeHTML, icon } from "../modules/ui.js";
 
 const copy = {
@@ -40,7 +41,7 @@ export function WrittenAssessmentGuide(lang, paymentUrl) {
     return /* HTML */ `
       <div id="guide-${method}" ${email ? "" : "hidden"}>
         <p><bdi dir="ltr">${escapeHTML(contact)}</bdi><br>${email ? c.emailHelp : c.whatsappHelp}</p>
-        <img src="/src/assets/images/assessment-guides/${method}-${lang}.webp"
+        <img src="${basePath}/src/assets/images/assessment-guides/${method}-${lang}.webp"
           alt="${email ? c.emailImage : c.whatsappImage}" loading="lazy"
           width="${email ? 1463 : 1536}" height="${email ? 1075 : 1024}">
       </div>

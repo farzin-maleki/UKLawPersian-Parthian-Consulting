@@ -10,7 +10,7 @@ export function Navbar(lang) {
       const href = pathFor(item.path, lang);
       const active = item.path
         ? pathname.startsWith(href.replace(/\/$/, ""))
-        : pathname === `/${lang}`;
+        : pathname === pathFor("", lang).replace(/\/$/, "");
       return /* HTML */ `
         <a href="${href}" ${active ? ' aria-current="page"' : ""}>
           ${escapeHTML(t(item.label, lang))}

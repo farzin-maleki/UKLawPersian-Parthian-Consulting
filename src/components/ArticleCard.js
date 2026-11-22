@@ -1,4 +1,5 @@
 import { t, pathFor } from "../modules/language.js";
+import { basePath } from "../modules/paths.js";
 import { escapeHTML, icon, dateLabel } from "../modules/ui.js";
 import { services, copy } from "../content/data.js";
 export function ArticleCard(article, lang) {
@@ -12,7 +13,7 @@ export function ArticleCard(article, lang) {
         aria-hidden="true"
       >
         <img
-          src="${escapeHTML(article.image)}"
+          src="${basePath}${escapeHTML(article.image)}"
           alt=""
           width="800"
           height="560"

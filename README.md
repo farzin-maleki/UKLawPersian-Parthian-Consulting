@@ -12,6 +12,8 @@ Optional browser checks use Playwright and an existing Chromium-based browser. W
 
 ## Edit and launch
 
+GitHub Pages publishes from the **GitHub Actions** source. On pushes to `main`, the Pages workflow generates English and Persian route directories from the shared HTML templates and uses the site's configured base path for links and assets. To build a project-site preview locally, set `PAGES_BASE_PATH` to `/UKLawPersian-Parthian-Consulting` and run `node scripts/build-pages.mjs <empty-output-directory>`.
+
 - Edit service definitions, guides, FAQs, policy drafts and consultation options in `src/content/data.js`. Shared site copy lives in `src/content/interface.js`. The booking and contact modules have their own bilingual interface messages.
 - Approve both policy translations, editorial guides, service scope, company registration details, contact details and consultant profile before launch. Update the corresponding copy in `src/content/interface.js` and `src/content/data.js`. Qualifications, authorisations, audience figures, testimonials and the consultant photo are held pending verification and approval.
 - Configure booking and enquiry providers using [the integration guide](INTEGRATIONS.md). Public settings live in `src/config.js`. Private credentials stay in the business accounts. Cal.com opens as a separate tab. No third-party script loads on the site during browsing.

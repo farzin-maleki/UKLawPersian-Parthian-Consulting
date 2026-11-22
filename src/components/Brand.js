@@ -2,7 +2,9 @@ import { copy } from "../content/data.js";
 import { pathFor } from "../modules/language.js";
 import { escapeHTML } from "../modules/ui.js";
 
-const logoPath = "/src/assets/logos";
+import { basePath } from "../modules/paths.js";
+
+const logoPath = `${basePath}/src/assets/logos`;
 
 export function Brand(lang, { footer = false } = {}) {
   const label = escapeHTML(`UKLawPersian · Parthian Consulting — ${copy[lang].home}`);

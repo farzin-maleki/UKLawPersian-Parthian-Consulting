@@ -1,4 +1,5 @@
 import { copy, articles, services } from "../../content/data.js";
+import { basePath } from "../../modules/paths.js";
 import { escapeHTML, icon, dateLabel } from "../../modules/ui.js";
 import { t, pathFor } from "../../modules/language.js";
 import { CTA } from "../../modules/sections.js";
@@ -59,7 +60,7 @@ export function render(lang, article) {
       </header>
       <div class="container article-cover">
         <img
-          src="${escapeHTML(article.image)}"
+          src="${basePath}${escapeHTML(article.image)}"
           alt="${escapeHTML(t(article.imageAlt, lang))}"
           width="1000"
           height="670"

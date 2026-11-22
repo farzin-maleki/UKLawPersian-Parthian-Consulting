@@ -1,3 +1,5 @@
+import { basePath } from "./paths.js";
+
 export function escapeHTML(value = "") {
   return String(value).replace(
     /[&<>"']/g,
@@ -15,7 +17,7 @@ export function icon(name, extraClass = "") {
       aria-hidden="true"
       focusable="false"
     >
-      <use href="/src/assets/icons/bootstrap-icons.svg#${safeName}"></use>
+      <use href="${basePath}/src/assets/icons/bootstrap-icons.svg#${safeName}"></use>
     </svg>
   `.trim();
 }

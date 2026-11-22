@@ -1,4 +1,5 @@
 import { copy, services, articles, faqs } from "../../content/data.js";
+import { basePath } from "../../modules/paths.js";
 import { escapeHTML, icon } from "../../modules/ui.js";
 import { bookingPath, pathFor } from "../../modules/language.js";
 import { lines, CTA, PricingCards } from "../../modules/sections.js";
@@ -63,10 +64,10 @@ export function render(lang) {
           <div class="hero-visual">
             <img
               class="hero-photo"
-              src="/src/assets/images/hero/london.webp"
+              src="${basePath}/src/assets/images/hero/london.webp"
               srcset="
-                /src/assets/images/hero/london-small.webp  700w,
-                /src/assets/images/hero/london.webp       1350w
+                ${basePath}/src/assets/images/hero/london-small.webp  700w,
+                ${basePath}/src/assets/images/hero/london.webp       1350w
               "
               sizes="(max-width: 767px) calc(100vw - 48px), 555px"
               alt="${escapeHTML(c.heroPhoto)}"
@@ -162,7 +163,7 @@ export function render(lang) {
           <div class="col-lg-5">
             <div class="about-image">
               <img
-                src="/src/assets/images/backgrounds/london-detail.webp"
+                src="${basePath}/src/assets/images/backgrounds/london-detail.webp"
                 alt="${escapeHTML(c.aboutImage)}"
                 width="900"
                 height="1100"

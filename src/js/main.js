@@ -1,5 +1,6 @@
 import { copy, services, articles, legal, brand } from "../content/data.js";
 import { config } from "../config.js";
+import { basePath, routePath } from "../modules/paths.js";
 import { getLanguage, t, pathFor } from "../modules/language.js";
 import { escapeHTML, icon, safeExternalURL } from "../modules/ui.js";
 import { Header } from "../components/Header.js";
@@ -10,10 +11,10 @@ import { initAnalytics } from "./analytics.js";
 
 const lang = getLanguage();
 const c = copy[lang];
-const route = location.pathname.split("/").filter(Boolean).slice(1);
+const [routeLanguage, ...route] = routePath().split("/").filter(Boolean);
 let type = "404";
 let item;
-if (document.body.dataset.page !== "404" && /^(en|fa)$/.test(location.pathname.split("/")[1])) {
+if (document.body.dataset.page !== "404" && /^(en|fa)$/.test(routeLanguage)) {
   if (!route.length) type = "home";
   else if (
     route.length === 1 &&
@@ -99,7 +100,7 @@ function metadata() {
     link("alternate", base + pathFor(route.join("/"), "en"), "x-default");
     meta("og:url", base + currentPath, true);
   }
-  meta("og:image", base + (item?.image || "/src/assets/images/hero/london.webp"), true);
+  meta("og:image", base + basePath + (item?.image || "/src/assets/images/hero/london.webp"), true);
   meta("og:image:alt", item?.imageAlt ? t(item.imageAlt, lang) : c.heroPhoto, true);
   meta("twitter:card", "summary_large_image");
   if (config.launchApproved && safeExternalURL(config.siteUrl) && type === "home") {
