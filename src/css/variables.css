@@ -1,0 +1,47 @@
+@font-face {
+  font-family: Inter;
+  src: url('/src/assets/fonts/inter-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('/src/assets/fonts/vazirmatn-arabic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200E,U+202A-202E,U+FB50-FDFF,U+FE70-FEFF;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('/src/assets/fonts/vazirmatn-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+:root {
+  --navy: #142841;
+  --navy-deep: #0e2035;
+  --navy-light: #263e59;
+  --white: #fff;
+  --accent: #b52c39;
+  --soft: #f4f6f8;
+  --text: #202a35;
+  --muted: #677384;
+  --border: #dde3e9;
+  --warm: #f9f9f7;
+  --font: Inter,Arial,sans-serif;
+  --font-fa: Vazirmatn,Tahoma,sans-serif;
+  --radius: 3px;
+  --ease: 180ms ease;
+  --motion-out: cubic-bezier(.2, .68, .25, 1);
+  --section: 104px;
+  --bs-body-color: var(--text);
+  --bs-body-font-family: var(--font);
+  --bs-border-color: var(--border);
+}

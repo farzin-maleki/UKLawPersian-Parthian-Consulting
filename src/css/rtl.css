@@ -1,0 +1,175 @@
+html[lang=fa] body {
+  font-family: var(--font-fa);
+  line-height: 1.95;
+}
+
+html[lang=fa] h1,html[lang=fa] h2,html[lang=fa] h3 {
+  letter-spacing: 0;
+  line-height: 1.65;
+  font-weight: 600;
+}
+
+html[lang=fa] .eyebrow {
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+html[lang=fa] .wordmark,html[lang=fa] .brand-strip span:first-child {
+  font-family: var(--font);
+}
+
+html[lang=fa] .hero h1 {
+  font-size: clamp(39px,4.2vw,58px);
+  line-height: 1.65;
+}
+
+html[lang=fa] .hero-copy>.eyebrow {
+  font-size: 10px;
+}
+
+html[lang=fa] .hero-intro {
+  font-size: 17px;
+  line-height: 2.1;
+}
+
+html[lang=fa] .hero-detail {
+  font-size: 11px;
+}
+
+html[lang=fa] .desktop-nav>a,html[lang=fa] .desktop-nav .services-dropdown-row>a {
+  font-size: 13px;
+}
+
+html[lang=fa] .button {
+  font-size: 13px;
+}
+
+html[lang=fa] .service-card h3 {
+  font-size: 19px;
+}
+
+html[lang=fa] .service-card p {
+  font-size: 13px;
+  line-height: 2;
+}
+
+html[lang=fa] .service-number,html[lang=fa] .step-number,html[lang=fa] .price {
+  font-family: var(--font);
+}
+
+html[lang=fa] .article-meta {
+  font-size: 10px;
+}
+
+html[lang=fa] .article-card h3 {
+  line-height: 1.8;
+}
+
+html[lang=fa] .faq-item>summary {
+  font-size: 15px;
+}
+
+html[lang=fa] .footer-main h2 {
+  font-size: 13px;
+}
+
+html[lang=fa] .footer-main li {
+  font-size: 12px;
+}
+
+html[lang=fa] .footer-disclosure {
+  font-size: 12px;
+  line-height: 2;
+}
+
+html[dir=rtl] .directional {
+  transform: scaleX(-1);
+}
+
+html[dir=rtl] .text-link:hover .directional {
+  transform: scaleX(-1) translateX(3px);
+}
+
+html[dir=rtl] .mobile-menu {
+  --menu-entry-offset: -20px;
+  inset: 0 auto 0 0;
+}
+
+html[dir=rtl] .page-loader-progress {
+  --progress-direction: -1;
+}
+
+html[lang=fa] .article-byline {
+  font-size: 12px;
+}
+
+html[lang=fa] .prose-section p {
+  line-height: 2.2;
+}
+
+html[lang=fa] .hero-floating-card strong {
+  font-weight: 600;
+}
+
+html[lang=fa] .section-heading h2 {
+  line-height: 1.7;
+}
+
+html[lang=fa] .language-switch[lang=en] {
+  font-family: var(--font);
+}
+
+html[lang=fa] .brand-strip span:last-child {
+  font-family: var(--font-fa);
+}
+
+html[lang=fa] .service-overview>p {
+  letter-spacing: 0;
+}
+
+html[lang=fa] .article-byline time {
+  white-space: nowrap;
+}
+
+@media(max-width:991.98px) and (min-width:768px) {
+  html[lang=fa] .hero h1 {
+    font-size: 36px;
+  }
+  html[lang=fa] .hero-intro {
+    font-size: 15px;
+  }
+  html[lang=fa] .hero-copy>.eyebrow {
+    font-size: 9px;
+  }
+}
+
+@media(max-width:767.98px) {
+  html[lang=fa] .hero h1 {
+    font-size: clamp(36px,9vw,50px);
+  }
+  html[lang=fa] .hero-intro {
+    font-size: 16px;
+  }
+  html[lang=fa] .hero-detail {
+    font-size: 10px;
+  }
+  html[lang=fa] .page-intro h1 {
+    font-size: 35px;
+  }
+  html[lang=fa] .hero-floating-card strong {
+    font-size: 12px;
+  }
+  html[lang=fa] .hero-floating-card small {
+    font-size: 10px;
+  }
+  html[lang=fa] .service-card h3 {
+    font-size: 18px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html[dir=rtl] .text-link:hover .directional {
+    transform: scaleX(-1);
+  }
+}

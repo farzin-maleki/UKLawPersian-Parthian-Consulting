@@ -1,0 +1,158 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/.*",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://formspree.io; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "X-Frame-Options": "DENY"
+      },
+      "continue": true
+    },
+    {
+      "src": "/$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/((?:en|fa))$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/((?:en|fa)/about)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/about/$",
+      "dest": "/pages/about.html"
+    },
+    {
+      "src": "/((?:en|fa)/services)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/services/$",
+      "dest": "/pages/services.html"
+    },
+    {
+      "src": "/((?:en|fa)/services/(?:immigration|housing|employment|civil-disputes|business|property|document-assistance))$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/services/(?:immigration|housing|employment|civil-disputes|business|property|document-assistance)/$",
+      "dest": "/pages/service.html"
+    },
+    {
+      "src": "/((?:en|fa)/insights)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/insights/$",
+      "dest": "/pages/insights.html"
+    },
+    {
+      "src": "/((?:en|fa)/insights/(?:prepare-for-a-housing-conversation|organise-your-workplace-records|prepare-a-useful-business-brief))$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/insights/(?:prepare-for-a-housing-conversation|organise-your-workplace-records|prepare-a-useful-business-brief)/$",
+      "dest": "/pages/article.html"
+    },
+    {
+      "src": "/((?:en|fa)/book)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/book/$",
+      "dest": "/pages/booking.html"
+    },
+    {
+      "src": "/((?:en|fa)/contact)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/contact/$",
+      "dest": "/pages/contact.html"
+    },
+    {
+      "src": "/((?:en|fa)/from-instagram)$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/from-instagram/$",
+      "dest": "/pages/from-instagram.html"
+    },
+    {
+      "src": "/(en|fa)/instagram/?$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/from-instagram/"
+      }
+    },
+    {
+      "src": "/((?:en|fa)/legal/(?:privacy|cookies|terms|refunds|complaints))$",
+      "status": 308,
+      "headers": {
+        "Location": "/$1/"
+      }
+    },
+    {
+      "src": "/(?:en|fa)/legal/(?:privacy|cookies|terms|refunds|complaints)/$",
+      "dest": "/pages/legal.html"
+    },
+    {
+      "src": "/((?:favicon\\.png|robots\\.txt|sitemap\\.xml))$",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(src/(?:css|js|modules|components|content|assets)/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)*\\.(?:css|js|svg|webp|woff2))$",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(src/config\\.js)$",
+      "dest": "/$1"
+    },
+    {
+      "src": "/.*",
+      "dest": "/404.html",
+      "status": 404
+    }
+  ]
+}

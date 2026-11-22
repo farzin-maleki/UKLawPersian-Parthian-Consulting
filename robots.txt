@@ -1,0 +1,3 @@
+# Preview configuration. Set the approved domain and generate launch files before indexing.
+User-agent: *
+Disallow: /
