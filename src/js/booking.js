@@ -3,6 +3,7 @@ import { consultationOptions } from "../content/data.js";
 import { escapeHTML, icon } from "../modules/ui.js";
 import { pathFor, t, alternatePath } from "../modules/language.js";
 import { safeProviderUrl } from "../modules/validation.js";
+import { WrittenAssessmentGuide, initWrittenGuide } from "../components/WrittenAssessmentGuide.js";
 
 const copy = {
   en: {
@@ -17,7 +18,9 @@ const copy = {
     two: "2. Review and book",
     price: "GBP",
     included: "What to expect",
-    next: "Continue to Cal.com",
+    bookWritten: "Book a consultation",
+    writtenProvider: "Payment for the written assessment is handled by Stripe.",
+    writtenDocumentNote: "After payment, send your enquiry and supporting documents by email (recommended) or WhatsApp.",
     bookVideo: "Book video consultation",
     important: "Important",
     videoDocumentNote:
@@ -42,7 +45,7 @@ const copy = {
     contact: "Contact information",
     timeframe: "Written-response timeframe",
     written:
-      "A review slot reserves time for preparing your assessment. You do not attend a meeting and no Teams invitation is needed.",
+      "Send us your enquiry for a written response. You do not attend a meeting.",
     video:
       "Choose an available 60-minute appointment. Once your paid booking is confirmed, your confirmation will include the Microsoft Teams meeting details.",
     documents: "Supporting documents",
@@ -69,7 +72,9 @@ const copy = {
     two: "۲. بررسی و رزرو",
     price: "پوند بریتانیا",
     included: "آنچه دریافت می‌کنید",
-    next: "ادامه رزرو در Cal.com",
+    bookWritten: "رزرو مشاوره",
+    writtenProvider: "پرداخت هزینه ارزیابی کتبی از طریق Stripe انجام می‌شود.",
+    writtenDocumentNote: "پس از پرداخت، درخواست و مدارک مرتبط را از طریق ایمیل (پیشنهادی) یا واتساپ ارسال کنید.",
     bookVideo: "رزرو مشاوره تصویری",
     important: "مهم",
     videoDocumentNote:
@@ -78,7 +83,7 @@ const copy = {
       "اگر برای مشاوره تصویری خود <strong>مدارکی</strong> دارید، لطفاً صبر کنید تا هم رزرو و هم پرداخت شما تأیید شود. سپس <strong>مدارک</strong> مرتبط را از طریق راه‌های ارتباطی زیر برای پارتین کانسالتینگ ارسال کنید.",
     email: "ایمیل",
     whatsapp: "واتساپ",
-    approve: "تأیید",
+    approve: "تأیید و شروع رزرو",
     cancel: "انصراف",
     opens: "Cal.com در زبانه جدید باز می‌شود",
     provider:
@@ -95,7 +100,7 @@ const copy = {
     contact: "اطلاعات تماس",
     timeframe: "زمان ارائه پاسخ کتبی",
     written:
-      "بازه بررسی، زمانی برای تهیه ارزیابی کتبی شماست. نیازی به حضور در جلسه نیست و دعوت‌نامه Teams ارسال نمی‌شود.",
+      "درخواست خود را برای دریافت پاسخ کتبی ارسال کنید. نیازی به حضور در جلسه نیست.",
     video:
       "یک وقت ۶۰ دقیقه‌ای از زمان‌های در دسترس انتخاب کنید. پس از تأیید رزرو و پرداخت، اطلاعات جلسه Microsoft Teams در تأییدیه شما درج خواهد شد.",
     documents: "مدارک مرتبط",
@@ -119,14 +124,12 @@ function chosenId() {
 }
 
 function bookingLink(id) {
-  const localVideoPreview =
-    id === "video" &&
-    ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
-  if (!localVideoPreview && (!config.launchApproved || !config.booking.enabled))
+  const localPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  if (!localPreview && (!config.launchApproved || !config.booking.enabled))
     return "";
   return safeProviderUrl(
     id === "written" ? config.booking.writtenUrl : config.booking.videoUrl,
-    "cal",
+    id === "written" ? "stripe" : "cal",
   );
 }
 
@@ -164,7 +167,6 @@ function videoNotice(c, url) {
           class="button button-primary"
           data-approve
           href="${escapeHTML(url)}"
-          target="_blank"
           rel="noopener noreferrer"
           >${c.approve}</a
         >
@@ -180,6 +182,8 @@ function detail(lang, id) {
     consultationOptions[0];
   const url = bookingLink(option.id);
   const live = Boolean(url);
+  const written = id === "written";
+  const canOpenDialog = written || live;
   const writtenTimeframe =
     id === "written"
       ? /* HTML */ `
@@ -199,7 +203,7 @@ function detail(lang, id) {
       `,
     )
     .join("");
-  const availabilityNotice = !live
+  const availabilityNotice = !canOpenDialog
     ? /* HTML */ `
         <div class="notice" role="status">
           ${icon("info-circle")}
@@ -211,30 +215,16 @@ function detail(lang, id) {
       `
     : "";
   let bookingAction;
-  if (live && id === "video") {
+  if (canOpenDialog) {
     bookingAction = /* HTML */ `
       <button
         class="button button-primary"
         type="submit"
         aria-haspopup="dialog"
-        aria-controls="video-notice"
+        aria-controls="${written ? "written-guide" : "video-notice"}"
       >
-        ${c.bookVideo}
+        ${written ? c.bookWritten : c.bookVideo}
       </button>
-    `;
-  } else if (live) {
-    bookingAction = /* HTML */ `
-      <a
-        class="button button-primary booking-continue"
-        id="booking-continue"
-        href="${escapeHTML(url)}"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-describedby="booking-provider-note"
-      >
-        ${c.next}${icon("box-arrow-up-right")}
-      </a>
-      <p class="muted small">${c.opens}</p>
     `;
   } else {
     bookingAction = /* HTML */ `
@@ -262,7 +252,7 @@ function detail(lang, id) {
             id="booking-terms"
             name="terms"
             aria-describedby="booking-terms-error"
-            ${live ? "" : "disabled"}
+            ${canOpenDialog ? "" : "disabled"}
           />
           <label for="booking-terms">
             ${c.terms}
@@ -286,7 +276,8 @@ function detail(lang, id) {
         <p class="field-error" id="booking-terms-error" role="alert"></p>
         ${bookingAction}
       </form>
-      <p class="muted small" id="booking-provider-note">${c.provider}</p>
+      <p class="muted small" id="booking-provider-note">${written ? c.writtenProvider : c.provider}</p>
+      ${written ? WrittenAssessmentGuide(lang, url) : ""}
       ${live && id === "video" ? videoNotice(c, url) : ""}
     </div>
   `;
@@ -369,20 +360,15 @@ export function renderBooking(lang = "en") {
 }
 
 function documentInstructions(c, id) {
-  if (id === "video") return c.videoDocumentNote;
-  return config.booking.documentsEnabled &&
-    config.booking.enabled &&
-    config.launchApproved
-    ? c.docsLive
-    : c.docsPending;
+  return id === "video" ? c.videoDocumentNote : c.writtenDocumentNote;
 }
 
 function bindConfirmation(lang, id) {
   const c = copy[lang] || copy.en;
   const form = document.getElementById("booking-confirmation");
   const terms = document.getElementById("booking-terms");
-  const link = document.getElementById("booking-continue");
-  const dialog = document.getElementById("video-notice");
+  const dialog = document.querySelector("#booking-detail dialog");
+  if (id === "written") initWrittenGuide(dialog);
   function accepted() {
     if (!terms.checked) {
       document.getElementById("booking-terms-error").textContent = c.accept;
@@ -390,7 +376,7 @@ function bindConfirmation(lang, id) {
       terms.focus();
       return false;
     }
-    return Boolean(bookingLink(id));
+    return true;
   }
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -401,10 +387,7 @@ function bindConfirmation(lang, id) {
     .addEventListener("click", () => dialog.close());
   dialog
     ?.querySelector("[data-approve]")
-    .addEventListener("click", () => dialog.close());
-  link?.addEventListener("click", (event) => {
-    if (!accepted()) event.preventDefault();
-  });
+    ?.addEventListener("click", () => dialog.close());
   terms?.addEventListener("change", () => {
     if (terms.checked) {
       document.getElementById("booking-terms-error").textContent = "";

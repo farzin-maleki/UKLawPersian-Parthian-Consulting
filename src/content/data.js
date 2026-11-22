@@ -550,8 +550,8 @@ export const consultationOptions = [
     price: 50,
     title: bi("Written preliminary assessment", "ارزیابی مقدماتی کتبی"),
     summary: bi(
-      "A structured written response to a clearly defined enquiry. A review slot reserves working time; there is no meeting to attend.",
-      "پاسخی منظم و کتبی به یک درخواست مشخص. بازه بررسی برای اختصاص زمان کاری است و نیازی به حضور در جلسه ندارید.",
+      "A structured written response to your enquiry. After payment, send your details by email or WhatsApp.",
+      "پاسخی منظم و کتبی به درخواست شما. پس از پرداخت، جزئیات درخواست را از طریق ایمیل یا واتساپ ارسال کنید.",
     ),
     duration: bi(
       "Written response · no video meeting",

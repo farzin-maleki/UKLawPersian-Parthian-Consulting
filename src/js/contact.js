@@ -2,8 +2,17 @@ import { config } from "../config.js";
 import { services } from "../content/data.js";
 import { escapeHTML, icon } from "../modules/ui.js";
 import { bookingPath, pathFor, t } from "../modules/language.js";
-import { validateContact, validationSummary, safeProviderUrl } from "../modules/validation.js";
-import { showErrors, clearErrors, setFormStatus, setFormBusy } from "../modules/formHelpers.js";
+import {
+  validateContact,
+  validationSummary,
+  safeProviderUrl,
+} from "../modules/validation.js";
+import {
+  showErrors,
+  clearErrors,
+  setFormStatus,
+  setFormBusy,
+} from "../modules/formHelpers.js";
 
 const copy = {
   en: {
@@ -24,7 +33,8 @@ const copy = {
       "10–2,000 characters. Please do not include passports, financial details, medical information or confidential case documents.",
     privacy: "I have read the",
     privacyLink: "privacy notice",
-    privacyEnd: "and understand that my details will be used to respond to this enquiry.",
+    privacyEnd:
+      "and understand that my details will be used to respond to this enquiry.",
     send: "Send enquiry",
     sending: "Sending your enquiry…",
     received:
@@ -39,24 +49,27 @@ const copy = {
     details: "Other ways to connect",
     placeholder: "Business contact details are awaiting confirmation.",
     whatsapp: "Chat on WhatsApp",
-    whatsappNote: "For general enquiries only. Please do not send sensitive documents.",
     emailLabel: "Email",
     phoneLabel: "Phone",
     identity: "Parthian Consulting",
-    identityText: "The commercial consultancy operated by Parthian Peak Group Ltd.",
+    identityText:
+      "The commercial consultancy operated by Parthian Peak Group Ltd.",
     bookingTitle: "Ready for focused support?",
-    bookingText: "Explore a 60-minute video consultation or a written preliminary assessment.",
+    bookingText:
+      "Explore a 60-minute video consultation or a written preliminary assessment.",
     booking: "View consultation options",
     emergency:
       "This form is not monitored as an urgent service. Sending a message does not create a client relationship or pause any deadline.",
-    provider: "When enabled, this form sends your enquiry to our managed form provider, Formspree.",
+    provider:
+      "When enabled, this form sends your enquiry to our managed form provider, Formspree.",
     required: "All fields are required unless marked optional.",
     spam: "Please leave the website field empty.",
   },
   fa: {
     eyebrow: "ارتباط با ما",
     title: "از یک گفت‌وگو شروع کنیم.",
-    intro: "به ما بگویید به چه نوع پشتیبانی نیاز دارید. برای شروع، یک پرسش کوتاه و کلی کافی است.",
+    intro:
+      "به ما بگویید به چه نوع پشتیبانی نیاز دارید. برای شروع، یک پرسش کوتاه و کلی کافی است.",
     formTitle: "ارسال پرسش عمومی",
     name: "نام و نام خانوادگی",
     email: "نشانی ایمیل",
@@ -86,13 +99,13 @@ const copy = {
     details: "راه‌های دیگر ارتباط",
     placeholder: "اطلاعات تماس کسب‌وکار در انتظار تأیید است.",
     whatsapp: "گفت‌وگو در واتس‌اپ",
-    whatsappNote: "فقط برای پرسش‌های عمومی. لطفاً مدارک حساس ارسال نکنید.",
     emailLabel: "ایمیل",
     phoneLabel: "تلفن",
     identity: "Parthian Consulting",
     identityText: "بخش مشاوره تجاری شرکت Parthian Peak Group Ltd.",
     bookingTitle: "برای پشتیبانی متمرکز آماده‌اید؟",
-    bookingText: "با مشاوره ویدئویی ۶۰ دقیقه‌ای و ارزیابی مقدماتی کتبی آشنا شوید.",
+    bookingText:
+      "با مشاوره ویدئویی ۶۰ دقیقه‌ای و ارزیابی مقدماتی کتبی آشنا شوید.",
     booking: "مشاهده گزینه‌های مشاوره",
     emergency:
       "این فرم برای رسیدگی فوری پایش نمی‌شود. ارسال پیام به معنای ایجاد رابطه حرفه‌ای با مراجع نیست و هیچ مهلتی را متوقف نمی‌کند.",
@@ -104,13 +117,16 @@ const copy = {
 };
 
 function endpoint() {
-  return config.launchApproved ? safeProviderUrl(config.form.endpoint, "form") : "";
+  return config.launchApproved
+    ? safeProviderUrl(config.form.endpoint, "form")
+    : "";
 }
 
 function field(name, label, type = "text", extra = "") {
+  const requiredMark = name === "phone" ? "" : "*";
   return /* HTML */ `
     <div class="field">
-      <label for="contact-${name}">${label}</label>
+      <label for="contact-${name}">${label}${requiredMark}</label>
       <input
         id="contact-${name}"
         name="${name}"
@@ -127,7 +143,9 @@ function enquiryForm(c, lang) {
   const categoryOptions = services
     .map(
       (service) => /* HTML */ `
-        <option value="${service.id}">${escapeHTML(t(service.title, lang))}</option>
+        <option value="${service.id}">
+          ${escapeHTML(t(service.title, lang))}
+        </option>
       `,
     )
     .join("");
@@ -159,7 +177,7 @@ function enquiryForm(c, lang) {
             'autocomplete="tel" inputmode="tel" dir="ltr" maxlength="35"',
           )}
           <div class="field">
-            <label for="contact-category">${c.category}</label>
+            <label for="contact-category">${c.category}*</label>
             <select
               id="contact-category"
               name="category"
@@ -174,7 +192,7 @@ function enquiryForm(c, lang) {
           </div>
         </div>
         <div class="field">
-          <label for="contact-message">${c.message}</label>
+          <label for="contact-message">${c.message}*</label>
           <textarea
             id="contact-message"
             name="message"
@@ -207,7 +225,11 @@ function enquiryForm(c, lang) {
           />
           <label for="contact-privacy">
             ${c.privacy}
-            <a href="${pathFor("legal/privacy/", lang)}" target="_blank" rel="noopener">
+            <a
+              href="${pathFor("legal/privacy/", lang)}"
+              target="_blank"
+              rel="noopener"
+            >
               ${c.privacyLink}
             </a>
             ${c.privacyEnd}
@@ -232,8 +254,12 @@ function enquiryForm(c, lang) {
 
 export function renderContact(lang = "en") {
   const c = copy[lang] || copy.en;
-  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.contact.email) ? config.contact.email : "";
-  const phone = /^[+\d\s().-]{7,35}$/.test(config.contact.phone) ? config.contact.phone : "";
+  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.contact.email)
+    ? config.contact.email
+    : "";
+  const phone = /^[+\d\s().-]{7,35}$/.test(config.contact.phone)
+    ? config.contact.phone
+    : "";
   const whatsapp = /^\d{7,15}$/.test(config.contact.whatsapp)
     ? `https://wa.me/${config.contact.whatsapp}`
     : "";
@@ -254,7 +280,9 @@ export function renderContact(lang = "en") {
           ${icon("envelope")}
           <div>
             <h3>${c.emailLabel}</h3>
-            <a dir="ltr" href="mailto:${escapeHTML(email)}">${escapeHTML(email)}</a>
+            <a dir="ltr" href="mailto:${escapeHTML(email)}"
+              >${escapeHTML(email)}</a
+            >
           </div>
         </div>
       `
@@ -283,7 +311,6 @@ export function renderContact(lang = "en") {
           >
             ${icon("whatsapp")}${c.whatsapp}
           </a>
-          <p class="muted small">${c.whatsappNote}</p>
         </div>
       `
     : /* HTML */ `
@@ -310,9 +337,7 @@ export function renderContact(lang = "en") {
           <div class="col-lg-7">
             <div class="contact-form-card card">
               <h2>${c.formTitle}</h2>
-              <p class="muted">${c.required}</p>
-              ${availabilityNotice}
-              ${enquiryForm(c, lang)}
+              ${availabilityNotice} ${enquiryForm(c, lang)}
               <p class="muted small">${c.provider}</p>
               <p class="muted small">${c.emergency}</p>
             </div>
@@ -326,9 +351,7 @@ export function renderContact(lang = "en") {
               </div>
               ${emailContact} ${phoneContact}
               ${!email && !phone
-                ? /* HTML */ `
-                    <p class="notice">${c.placeholder}</p>
-                  `
+                ? /* HTML */ ` <p class="notice">${c.placeholder}</p> `
                 : ""}
               ${whatsappContact}
               <div class="card contact-booking">
@@ -357,7 +380,11 @@ export function initContact(lang = "en") {
     if (pending) return;
     const data = new FormData(form);
     const values = Object.fromEntries(data.entries());
-    const errors = validateContact(values, ["general", ...services.map((item) => item.id)], lang);
+    const errors = validateContact(
+      values,
+      ["general", ...services.map((item) => item.id)],
+      lang,
+    );
     if (Object.keys(errors).length) {
       setFormStatus(form, validationSummary(lang), "error");
       showErrors(form, errors);
@@ -390,7 +417,8 @@ export function initContact(lang = "en") {
         signal: controller.signal,
       });
       const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error("Submission not confirmed");
+      if (!response.ok || result.ok !== true)
+        throw new Error("Submission not confirmed");
       form.reset();
       setFormStatus(form, c.received, "success");
     } catch {

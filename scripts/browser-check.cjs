@@ -92,7 +92,15 @@ async function main() {
     await page.locator('[data-booking-type=written]').click();
     assert.match(await page.locator('#booking-detail').innerText(), /do not attend a meeting/i);
     assert.equal(await page.locator('[data-booking-type=written]').getAttribute('aria-pressed'), 'true');
-    assert.equal(await page.locator('#booking-confirmation button').isDisabled(), true);
+    const bookWritten = page.locator('#booking-confirmation button[type=submit]');
+    await bookWritten.click();
+    assert.equal(await page.locator('#written-guide').isVisible(), false);
+    await page.locator('#booking-terms').check();
+    await bookWritten.click();
+    await page.locator('#guide-email img').waitFor();
+    await page.locator('button[aria-controls=guide-whatsapp]').click();
+    await page.locator('#guide-whatsapp img').waitFor();
+    await page.locator('#written-guide [data-cancel]').click();
     await page.locator('.site-header [data-language=fa]').click();
     assert.equal(new URL(page.url()).searchParams.get('type'), 'written');
     await page.locator('[data-booking-type=written][aria-pressed=true]').waitFor();

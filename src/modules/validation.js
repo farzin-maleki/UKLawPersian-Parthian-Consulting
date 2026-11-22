@@ -46,6 +46,7 @@ export function safeProviderUrl(value, provider) {
     const url = new URL(value);
     if (url.protocol !== 'https:' || url.username || url.password || url.port) return '';
     if (provider === 'cal' && url.hostname === 'cal.com' && /^\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_/-]+\/?$/.test(url.pathname)) return url.href;
+    if (provider === 'stripe' && url.hostname === 'buy.stripe.com' && /^\/[a-zA-Z0-9_]+\/?$/.test(url.pathname)) return url.href;
     if (provider === 'form' && url.hostname === 'formspree.io' && /^\/f\/[a-zA-Z0-9]+\/?$/.test(url.pathname) && !url.search && !url.hash) return url.href;
   } catch { /* Invalid configuration stays inactive. */ }
   return '';

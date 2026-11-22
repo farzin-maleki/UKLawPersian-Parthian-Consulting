@@ -323,7 +323,7 @@ fieldset {
   margin-top: 15px;
 }
 
-.video-notice {
+.video-notice,.written-guide {
   width: min(30rem, calc(100% - 2rem));
   max-height: calc(100dvh - 2rem);
   margin: auto;
@@ -334,8 +334,51 @@ fieldset {
   background: var(--white);
 }
 
-.video-notice::backdrop {
+.video-notice::backdrop,.written-guide::backdrop {
   background: #0e2035a6;
+}
+
+.written-guide {
+  width: min(52rem, calc(100% - 2rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.guide-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 18px;
+}
+
+.guide-methods button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--navy);
+}
+
+.guide-methods button[aria-pressed="true"] {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.written-guide img {
+  display: block;
+  width: min(92%, 30rem);
+  height: auto;
+  margin-inline: auto;
+  margin-block-end: 20px;
+}
+
+.written-guide bdi {
+  overflow-wrap: anywhere;
 }
 
 .video-notice h2 {
@@ -353,6 +396,7 @@ fieldset {
 
 #video-notice-message strong {
   color: var(--accent);
+  font-size: 1.2em;
   font-weight: 700;
 }
 

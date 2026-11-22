@@ -15,18 +15,18 @@ Supply the final HTTPS domain in `config.siteUrl`, complete the sitemap/domain c
 1. Sign in to the business's Cal.com account; configure profile, availability, Europe/London timezone, date overrides, buffers, notice periods and calendar conflicts according to the owner's decisions.
 2. Connect the business Stripe account using the official [Cal.com Stripe app](https://cal.com/apps/stripe). Configure GBP payments inside Cal.com. This website never asks for a Stripe key and never handles card data.
 3. Connect the official [Microsoft 365/Teams app](https://cal.com/apps/msteams) and Outlook calendar. The Teams app requires a work/school Microsoft account. Confirm the tenant administrator permits the connection and verify that each test video booking creates a usable, distinct meeting link.
-4. Create the two event types below. Confirm the settings in the current Cal.com account; labels and available features can differ by plan.
+4. Create the video event in Cal.com and the written assessment payment link in Stripe.
 
 | Event | Customer price | Scheduling and delivery |
 | --- | --- | --- |
 | Video consultation | £100 | 60 minutes, Microsoft Teams location, paid booking required |
-| Written preliminary assessment | £50 | Separate event with an allocated internal review slot; no video location or attendance requirement |
+| Written preliminary assessment | £50 | Stripe Payment Link. The client sends details by email or WhatsApp after payment. |
 
-For the written service, describe the slot as review capacity throughout the event description, confirmations and reminders. Disable meeting-style reminders where possible. Publish an approved delivery timeframe in the event description and both `booking.writtenResponseTime` translations. If the account cannot present a non-attendance review slot clearly, keep this event disabled pending an agreed scheduling arrangement; do not silently turn it into a video appointment.
+For the written assessment, set `booking.writtenUrl` to the business's £50 HTTPS Payment Link on `buy.stripe.com`. Until a link is supplied, clients can view the bilingual guide and the payment action is disabled. Publish the agreed delivery timeframe in both `booking.writtenResponseTime` translations.
 
 Collect name, email, language preference and a short enquiry summary only. Do not ask for passports, bank records, health data, sensitive evidence or uploads. Require an acknowledgement of **the consultancy's** terms and cancellation/refund policy in the Cal.com booking questions, with working links to `/en/legal/terms/`, `/en/legal/refunds/` and the Persian equivalents. Cal.com's own terms are not a substitute. The acknowledgement on this website is an additional prompt; the required Cal.com field is authoritative for people opening an event link directly.
 
-Copy the actual public event URLs to `booking.videoUrl` and `booking.writtenUrl`. The website accepts HTTPS `cal.com` event paths only. Custom Cal domains need a deliberate URL allowlist change and verification. Event IDs are needed only in the private automation allowlist, not the frontend. No Cal embed or tracking script loads on this website: a clearly labelled button opens Cal.com in a new tab.
+Use the video's public HTTPS Cal.com event URL for `booking.videoUrl`. The video approval button opens that event. Written assessment approval opens its own Stripe Payment Link.
 
 Set `booking.enabled: true` only after paid/failed/cancelled booking tests pass, and `launchApproved: true` only after the wider launch review. Until then the booking page shows its unavailable state and cannot start a transaction.
 

@@ -655,6 +655,10 @@
   height: 15px;
 }
 
+.site-footer:empty {
+  padding: 0;
+}
+
 .site-footer {
   background: var(--navy-deep);
   color: #d9e0e9;

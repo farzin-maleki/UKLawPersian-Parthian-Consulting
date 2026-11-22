@@ -64,57 +64,55 @@ export function Footer(lang) {
     .join("");
 
   return /* HTML */ `
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row g-5 footer-main">
-          <div class="col-lg-4">
-            ${Brand(lang, { footer: true })}
-            <p class="footer-intro">${escapeHTML(c.footerAbout)}</p>
-            <p class="small">
-              ${escapeHTML(brand.company)}
-              <br />
-              ${escapeHTML(brand.tradingName)}
-            </p>
-            <p class="small footer-muted">${escapeHTML(c.companyPending)}</p>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <h2>${escapeHTML(c.footerNavigate)}</h2>
-            <ul>
-              ${navigationLinks}
-              <li><a href="${bookingPath(lang)}">${escapeHTML(c.book)}</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-md-4 col-lg-3">
-            <h2>${escapeHTML(c.footerLegal)}</h2>
-            <ul>
-              ${policyLinks}
-              <li>
-                <button class="footer-preferences" data-cookie-settings>
-                  ${escapeHTML(c.preferences)}
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-5 col-lg-3">
-            <h2>${escapeHTML(c.footerContact)}</h2>
-            ${emailContact}
-            ${whatsappContact}
-            ${instagramContact}
-            <a class="text-link footer-contact" href="${pathFor("contact", lang)}">
-              ${escapeHTML(c.contactLabel)}${icon("arrow-up-right", "directional")}
-            </a>
-          </div>
+    <div class="container">
+      <div class="row g-5 footer-main">
+        <div class="col-lg-4">
+          ${Brand(lang, { footer: true })}
+          <p class="footer-intro">${escapeHTML(c.footerAbout)}</p>
+          <p class="small">
+            ${escapeHTML(brand.company)}
+            <br />
+            ${escapeHTML(brand.tradingName)}
+          </p>
+          <p class="small footer-muted">${escapeHTML(c.companyPending)}</p>
         </div>
-        <div class="footer-services">
-          <h2>${escapeHTML(c.services)}</h2>
-          <div>${serviceLinks}</div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <h2>${escapeHTML(c.footerNavigate)}</h2>
+          <ul>
+            ${navigationLinks}
+            <li><a href="${bookingPath(lang)}">${escapeHTML(c.book)}</a></li>
+          </ul>
         </div>
-        <div class="footer-disclosure">${escapeHTML(c.footerDisclosure)}</div>
-        <div class="footer-bottom">
-          <p>© ${new Date().getFullYear()} UKLawPersian. ${escapeHTML(c.copyright)}</p>
-          <span>${escapeHTML(c.languages)}</span>
+        <div class="col-6 col-md-4 col-lg-3">
+          <h2>${escapeHTML(c.footerLegal)}</h2>
+          <ul>
+            ${policyLinks}
+            <li>
+              <button class="footer-preferences" data-cookie-settings>
+                ${escapeHTML(c.preferences)}
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-5 col-lg-3">
+          <h2>${escapeHTML(c.footerContact)}</h2>
+          ${emailContact}
+          ${whatsappContact}
+          ${instagramContact}
+          <a class="text-link footer-contact" href="${pathFor("contact", lang)}">
+            ${escapeHTML(c.contactLabel)}${icon("arrow-up-right", "directional")}
+          </a>
         </div>
       </div>
-    </footer>
+      <div class="footer-services">
+        <h2>${escapeHTML(c.services)}</h2>
+        <div>${serviceLinks}</div>
+      </div>
+      <div class="footer-disclosure">${escapeHTML(c.footerDisclosure)}</div>
+      <div class="footer-bottom">
+        <p>© ${new Date().getFullYear()} UKLawPersian. ${escapeHTML(c.copyright)}</p>
+        <span>${escapeHTML(c.languages)}</span>
+      </div>
+    </div>
   `;
 }

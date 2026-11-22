@@ -13,7 +13,7 @@ export function Header(lang, compact = false) {
         <span>${escapeHTML(copy[lang].languages)}</span>
       </div>
     </div>
-    <header class="site-header">
+    <div class="site-header">
       <div class="container header-inner">
         ${Brand(lang)}${compact ? "" : Navbar(lang)}
         <div class="header-actions">
@@ -30,7 +30,7 @@ export function Header(lang, compact = false) {
           </button>
         </div>
       </div>
-    </header>
+    </div>
     ${MobileMenu(lang)}
   `;
 }
