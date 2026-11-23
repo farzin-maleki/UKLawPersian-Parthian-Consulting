@@ -28,7 +28,9 @@ export function render(lang) {
       ([title, body], index) => /* HTML */ `
         <div class="col-md-6 col-xl-3">
           <div class="step">
-            <span class="step-number">${String(index + 1).padStart(2, "0")}</span>
+            <span class="step-number"
+              >${String(index + 1).padStart(2, "0")}</span
+            >
             <h3>${escapeHTML(title)}</h3>
             <p>${escapeHTML(body)}</p>
           </div>
@@ -50,15 +52,12 @@ export function render(lang) {
             <p class="hero-intro">${escapeHTML(c.heroIntro)}</p>
             <div class="hero-actions">
               ${BookingButton(lang)}
-              <a class="hero-secondary button-lines" href="${pathFor("services", lang)}">
+              <a
+                class="hero-secondary button-lines"
+                href="${pathFor("services", lang)}"
+              >
                 ${escapeHTML(c.explore)}${icon("arrow-right", "directional")}
               </a>
-            </div>
-            <div class="hero-detail">
-              ${icon("chat-square-text")}
-              <span>${escapeHTML(c.languages)}</span>
-              <span class="detail-divider"></span>
-              <span>${escapeHTML(c.heroNote)}</span>
             </div>
           </div>
           <div class="hero-visual">
@@ -180,7 +179,9 @@ export function render(lang) {
             <p class="eyebrow">${escapeHTML(c.aboutEyebrow)}</p>
             <h2>${lines(c.aboutTitle)}</h2>
             <p class="body-large">${escapeHTML(c.aboutText)}</p>
-            <p class="profile-note">${icon("person-badge")}${escapeHTML(c.profilePending)}</p>
+            <p class="profile-note">
+              ${icon("person-badge")}${escapeHTML(c.profilePending)}
+            </p>
             <a class="text-link" href="${pathFor("about", lang)}">
               ${escapeHTML(c.learnMore)}${icon("arrow-up-right", "directional")}
             </a>

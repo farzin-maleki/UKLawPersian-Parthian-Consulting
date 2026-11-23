@@ -8,10 +8,14 @@
     try {
       if (localStorage.getItem("uklp-language") === "fa") language = "fa";
     } catch {}
-    location.replace(`${basePath}/${language}/${location.search}${location.hash}`);
+    location.replace(
+      `${basePath}/${language}/${location.search}${location.hash}`,
+    );
   }
   if (/^\/(en|fa)\/instagram\/(?:index\.html)?$/.test(pathname)) {
-    location.replace(`${basePath}/${language}/from-instagram/${location.search}${location.hash}`);
+    location.replace(
+      `${basePath}/${language}/from-instagram/${location.search}${location.hash}`,
+    );
   }
   document.documentElement.lang = language;
   document.documentElement.dir = language === "fa" ? "rtl" : "ltr";

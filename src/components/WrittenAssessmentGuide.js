@@ -51,10 +51,10 @@ export function WrittenAssessmentGuide(lang, paymentUrl) {
   return /* HTML */ `
     <dialog id="written-guide" class="written-guide" aria-labelledby="written-guide-title"
       aria-describedby="written-guide-intro">
-      <h2 id="written-guide-title">${c.title}</h2>
+      <h2 id="written-guide-title" tabindex="-1" autofocus>${c.title}</h2>
       <p id="written-guide-intro">${c.intro}</p>
       <div class="guide-methods" role="group" aria-label="${c.method}">
-        <button type="button" aria-controls="guide-email" aria-pressed="true" autofocus>
+        <button type="button" aria-controls="guide-email" aria-pressed="true">
           ${icon("envelope")}${c.email}
         </button>
         <button type="button" aria-controls="guide-whatsapp" aria-pressed="false">

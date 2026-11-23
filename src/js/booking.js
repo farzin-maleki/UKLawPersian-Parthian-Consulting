@@ -3,7 +3,10 @@ import { consultationOptions } from "../content/data.js";
 import { escapeHTML, icon } from "../modules/ui.js";
 import { pathFor, t, alternatePath } from "../modules/language.js";
 import { safeProviderUrl } from "../modules/validation.js";
-import { WrittenAssessmentGuide, initWrittenGuide } from "../components/WrittenAssessmentGuide.js";
+import {
+  WrittenAssessmentGuide,
+  initWrittenGuide,
+} from "../components/WrittenAssessmentGuide.js";
 
 const copy = {
   en: {
@@ -20,7 +23,8 @@ const copy = {
     included: "What to expect",
     bookWritten: "Book a consultation",
     writtenProvider: "Payment for the written assessment is handled by Stripe.",
-    writtenDocumentNote: "After payment, send your enquiry and supporting documents by email (recommended) or WhatsApp.",
+    writtenDocumentNote:
+      "After payment, send your enquiry and supporting documents by email (recommended) or WhatsApp.",
     bookVideo: "Book video consultation",
     important: "Important",
     videoDocumentNote:
@@ -74,7 +78,8 @@ const copy = {
     included: "آنچه دریافت می‌کنید",
     bookWritten: "رزرو مشاوره",
     writtenProvider: "پرداخت هزینه ارزیابی کتبی از طریق Stripe انجام می‌شود.",
-    writtenDocumentNote: "پس از پرداخت، درخواست و مدارک مرتبط را از طریق ایمیل (پیشنهادی) یا واتساپ ارسال کنید.",
+    writtenDocumentNote:
+      "پس از پرداخت، درخواست و مدارک مرتبط را از طریق ایمیل (پیشنهادی) یا واتساپ ارسال کنید.",
     bookVideo: "رزرو مشاوره تصویری",
     important: "مهم",
     videoDocumentNote:
@@ -124,7 +129,9 @@ function chosenId() {
 }
 
 function bookingLink(id) {
-  const localPreview = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  const localPreview = ["localhost", "127.0.0.1", "[::1]"].includes(
+    location.hostname,
+  );
   if (!localPreview && (!config.launchApproved || !config.booking.enabled))
     return "";
   return safeProviderUrl(
@@ -143,7 +150,7 @@ function videoNotice(c, url) {
       aria-labelledby="video-notice-title"
       aria-describedby="video-notice-message"
     >
-      <h2 id="video-notice-title">
+      <h2 id="video-notice-title" tabindex="-1" autofocus>
         ${icon("info-circle")}
         <span>${c.important}:</span>
       </h2>
@@ -159,7 +166,6 @@ function videoNotice(c, url) {
           type="button"
           class="button button-secondary"
           data-cancel
-          autofocus
         >
           ${c.cancel}
         </button>
@@ -276,7 +282,9 @@ function detail(lang, id) {
         <p class="field-error" id="booking-terms-error" role="alert"></p>
         ${bookingAction}
       </form>
-      <p class="muted small" id="booking-provider-note">${written ? c.writtenProvider : c.provider}</p>
+      <p class="muted small" id="booking-provider-note">
+        ${written ? c.writtenProvider : c.provider}
+      </p>
       ${written ? WrittenAssessmentGuide(lang, url) : ""}
       ${live && id === "video" ? videoNotice(c, url) : ""}
     </div>
@@ -304,10 +312,7 @@ export function renderBooking(lang = "en") {
           <span class="muted">${escapeHTML(t(option.duration, lang))}</span>
           <span>${escapeHTML(t(option.summary, lang))}</span>
           <span class="text-link booking-option-action">
-            ${option.id === id ? c.selected : c.choose}${icon(
-              option.id === id ? "check-circle" : "arrow-right",
-              "directional",
-            )}
+            ${option.id === id ? c.selected : c.choose}
           </span>
         </button>
       `,
@@ -412,8 +417,8 @@ export function initBooking(lang = "en") {
       document.querySelectorAll("[data-booking-type]").forEach((item) => {
         const selected = item === button;
         item.setAttribute("aria-pressed", String(selected));
-        item.querySelector(".booking-option-action").innerHTML =
-          `${selected ? c.selected : c.choose}${icon(selected ? "check-circle" : "arrow-right", "directional")}`;
+        item.querySelector(".booking-option-action").textContent =
+          selected ? c.selected : c.choose;
       });
       document.getElementById("booking-detail").innerHTML = detail(lang, id);
       document.getElementById("booking-document-instructions").textContent =

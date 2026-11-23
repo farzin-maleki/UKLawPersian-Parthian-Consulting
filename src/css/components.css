@@ -1,4 +1,5 @@
-.button,.button-lines {
+.button,
+.button-lines {
   --button-hover-delay: 0.25s;
 }
 
@@ -645,12 +646,12 @@ article.price-card > .price {
   letter-spacing: -0.01em;
 }
 
-.about-plaza-photo {
+.about-portrait {
   display: block;
-  width: 100%;
+  width: min(100%, 380px);
   height: auto;
-  max-height: 460px;
-  object-fit: cover;
+  margin-inline: auto;
+  border-radius: 8px;
 }
 
 .value-card {

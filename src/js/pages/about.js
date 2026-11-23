@@ -25,11 +25,11 @@ export function render(lang) {
         <div class="row g-5 align-items-start">
           <div class="col-lg-5">
             <img
-              class="about-plaza-photo"
-              src="${basePath}/src/assets/images/backgrounds/london-plaza.webp"
-              alt="${lang === "fa" ? "عابران پیاده در میدانی میان ساختمان‌های آجری و شیشه‌ای لندن" : "Pedestrians crossing a London plaza framed by brick and glass buildings"}"
-              width="840"
-              height="900"
+              class="about-portrait"
+              src="${basePath}/src/assets/images/about/jason-picture.webp"
+              alt="${lang === "fa" ? "پرترهٔ جیسون" : "Portrait of Jason"}"
+              width="1122"
+              height="1402"
               loading="lazy"
             />
           </div>

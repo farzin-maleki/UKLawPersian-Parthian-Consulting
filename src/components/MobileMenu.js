@@ -24,7 +24,7 @@ export function MobileMenu(lang) {
       class="mobile-menu"
       aria-label="${escapeHTML(c.navigation)}"
     >
-      <div class="mobile-menu-top">
+      <div class="mobile-menu-top" tabindex="-1" autofocus>
         ${Brand(lang)}
         <button
           class="icon-button"

@@ -2,7 +2,9 @@
 
 The Parthian Consulting emblem, full logo and browser icon come from the original artwork supplied by the business. The web files are crops and resizes of that artwork.
 
-The images are locally stored WebP derivatives of photographs under the [Unsplash License](https://unsplash.com/license). The people pictured in editorial illustrations do not represent the consultancy.
+Jason’s portrait (`images/about/jason-picture.webp`) was supplied by the business.
+
+The editorial photographs listed below are locally stored WebP derivatives under the [Unsplash License](https://unsplash.com/license). The people pictured in editorial illustrations do not represent the consultancy.
 
 | Local file | Photographer and source |
 | --- | --- |
